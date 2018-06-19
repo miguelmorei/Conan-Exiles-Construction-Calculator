@@ -60,167 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _assets = __webpack_require__(1);
-
-var _assets2 = _interopRequireDefault(_assets);
-
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _Board = __webpack_require__(4);
-
-var _Board2 = _interopRequireDefault(_Board);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var resources = _assets2.default.resources;
-
-/**
- * Menu tabs
- * @param {*} element 
- */
-function Tabs(element) {
-    this.element = (0, _jquery2.default)(element);
-    this.tabs = (0, _jquery2.default)(element).find('.tab-menu a');
-    this.pages = (0, _jquery2.default)(element).find('.tab');
-    this.activeTab = this.tabs.eq(0).data('tab');
-}
-
-Tabs.prototype.init = function () {
-    var _self = this;
-    _self.tabs.on('click', function (e) {
-        e.preventDefault();
-        _self.changeTab((0, _jquery2.default)(this));
-    });
-};
-
-Tabs.prototype.changeTab = function (tab) {
-    var _self = this;
-    this.tabs.removeClass('active');
-    (0, _jquery2.default)(tab).addClass('active');
-    this.activeTab = (0, _jquery2.default)(tab).data('tab');
-    this.pages.removeClass('active');
-    var $page = this.pages.filter(function () {
-        return (0, _jquery2.default)(this).data('tab') == _self.activeTab;
-    });
-    $page.addClass('active');
-};
-
-function MaterialCalculator(id, resouces) {
-    this.resources = resources;
-    this.board = new _Board2.default(id, 40);
-}
-
-MaterialCalculator.prototype.init = function () {
-    this.board.init();
-};
-
-MaterialCalculator.prototype.selectedResource = function () {};
-
-(0, _jquery2.default)(document).ready(function () {
-
-    var calc = new MaterialCalculator('board', resources).init();
-    var menuTabs = new Tabs('.construction-menu').init();
-});
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    "resources": [{
-        "id": 1,
-        "name": "wood",
-        "description": "Wood",
-        "recipe": [{
-            "id": 1,
-            "amount": 1
-        }],
-        "craft_time": 0,
-        "color": "brown"
-    }, {
-        "id": 2,
-        "name": "stone",
-        "description": "Stone",
-        "recipe": [{
-            "id": 2,
-            "amount": 1
-        }],
-        "craft_time": 0,
-        "color": "light grey"
-    }, {
-        "id": 3,
-        "name": "iron_stone",
-        "description": "Iron Stone",
-        "recipe": [{
-            "id": 3,
-            "amount": 1
-        }],
-        "color": "light blue"
-    }, {
-        "id": 4,
-        "name": "stone_brick",
-        "description": "Stone Brick",
-        "recipe": [{
-            "id": 2,
-            "amount": 10
-        }],
-        "craft_time": 20,
-        "xp": 28,
-        "color": "orange"
-    }, {
-        "id": 5,
-        "name": "iron_bar",
-        "description": "Iron Bar",
-        "recipe": [{
-            "id": 3,
-            "amount": 2
-        }],
-        "color": "dark grey"
-    }, {
-        "id": 6,
-        "name": "shaped_wood",
-        "description": "Shaped Wood",
-        "recipe": [{
-            "id": 1,
-            "amount": 10
-        }],
-        "craft_time": 0,
-        "xp": 28,
-        "color": "light brown"
-    }, {
-        "id": 7,
-        "name": "iron_reinforcement",
-        "description": "Iron Reinforcement",
-        "recipe": [{
-            " id": 5,
-            "amount": 2
-        }],
-        "craft_time": 30,
-        "xp": 26,
-        "color": "black"
-    }]
-};
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10149,6 +9993,332 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _assets = __webpack_require__(2);
+
+var _assets2 = _interopRequireDefault(_assets);
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _Board = __webpack_require__(4);
+
+var _Board2 = _interopRequireDefault(_Board);
+
+var _Tabs = __webpack_require__(6);
+
+var _Tabs2 = _interopRequireDefault(_Tabs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var resources = _assets2.default.resources;
+
+
+/**
+ * Menu tabs
+ * @param {*} element 
+ */
+
+function MaterialCalculator(id, resouces) {
+    this.resources = resources;
+    this.board = new _Board2.default(id, 40);
+    this.activeResource = {};
+}
+
+MaterialCalculator.prototype.init = function () {
+    this.board.init();
+
+    return this;
+};
+
+MaterialCalculator.prototype.setActiveResource = function (resource) {
+
+    var activeResource = this.resources.filter(function (r) {
+        return resource == r.name;
+    });
+
+    console.log(activeResource);
+};
+
+MaterialCalculator.prototype.selectedResource = function () {};
+
+(0, _jquery2.default)(document).ready(function () {
+
+    var calc = new MaterialCalculator('board', resources).init();
+    var menuTabs = new _Tabs2.default('.construction-menu').init();
+
+    (0, _jquery2.default)('.construction-menu .icon').on('click', function (e) {
+        e.preventDefault();
+        (0, _jquery2.default)('.construction-menu .icon').removeClass('active');
+        (0, _jquery2.default)(this).addClass('active');
+        calc.setActiveResource((0, _jquery2.default)(this).data('resource'));
+    });
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    "resources": [{
+        "id": 1,
+        "name": "wood",
+        "description": "Wood",
+        "recipe": [{
+            "id": 1,
+            "amount": 1
+        }],
+        "craft_time": 0,
+        "color": "brown"
+    }, {
+        "id": 2,
+        "name": "stone",
+        "description": "Stone",
+        "recipe": [{
+            "id": 2,
+            "amount": 1
+        }],
+        "craft_time": 0,
+        "color": "light grey"
+    }, {
+        "id": 3,
+        "name": "iron_stone",
+        "description": "Iron Stone",
+        "recipe": [{
+            "id": 3,
+            "amount": 1
+        }],
+        "color": "light blue"
+    }, {
+        "id": 4,
+        "name": "stone_brick",
+        "description": "Stone Brick",
+        "recipe": [{
+            "id": 2,
+            "amount": 10
+        }],
+        "craft_time": 20,
+        "xp": 28,
+        "color": "orange"
+    }, {
+        "id": 5,
+        "name": "iron_bar",
+        "description": "Iron Bar",
+        "recipe": [{
+            "id": 3,
+            "amount": 2
+        }],
+        "color": "dark grey"
+    }, {
+        "id": 6,
+        "name": "shaped_wood",
+        "description": "Shaped Wood",
+        "recipe": [{
+            "id": 1,
+            "amount": 10
+        }],
+        "craft_time": 0,
+        "xp": 28,
+        "color": "light brown"
+    }, {
+        "id": 7,
+        "name": "iron_reinforcement",
+        "description": "Iron Reinforcement",
+        "recipe": [{
+            " id": 5,
+            "amount": 2
+        }],
+        "craft_time": 30,
+        "xp": 26,
+        "color": "black"
+    }, {
+        "id": 8,
+        "name": "sandstone_foundation",
+        "description": "Sandstone Foundation",
+        "recipe": [{
+            "id": 2,
+            "amount": 35
+        }, {
+            "id": 1,
+            "amount": 5
+        }]
+    }, {
+        "id": 9,
+        "name": "sandstone_wall",
+        "description": "Sandstone Wall",
+        "recipe": [{
+            "id": 2,
+            "amount": 18
+        }, {
+            "id": 1,
+            "amount": 3
+        }]
+    }, {
+        "id": 10,
+        "name": "sandstone_ceiling",
+        "description": "Sandstone Ceiling",
+        "recipe": [{
+            "id": 2,
+            "amount": 21
+        }, {
+            "id": 1,
+            "amount": 3
+        }]
+    }, {
+        "id": 11,
+        "name": "sandstone_doorframe",
+        "description": "Sandstone DoorFrame",
+        "recipe": [{
+            "id": 2,
+            "amount": 18
+        }, {
+            "id": 1,
+            "amount": 3
+        }]
+    }, {
+        "id": 12,
+        "name": "sandstone_wedgefoundation",
+        "description": "Sandstone Wedge Foundation",
+        "recipe": [{
+            "id": 2,
+            "amount": 32
+        }, {
+            "id": 1,
+            "amount": 5
+        }]
+    }, {
+        "id": 13,
+        "name": "sandstone_wedge",
+        "description": "Sandstone Wedge",
+        "recipe": [{
+            "id": 2,
+            "amount": 18
+        }, {
+            "id": 1,
+            "amount": 3
+        }]
+    }, {
+        "id": 14,
+        "name": "sandstone_pillar",
+        "description": "Sandstone Pillar",
+        "recipe": [{
+            "id": 2,
+            "amount": 18
+        }, {
+            "id": 1,
+            "amount": 3
+        }]
+    }, {
+        "id": 15,
+        "name": "stonebrick_foundation",
+        "description": "Stonebrick Foundation",
+        "recipe": [{
+            "id": 2,
+            "amount": 35
+        }, {
+            "id": 1,
+            "amount": 5
+        }]
+    }, {
+        "id": 16,
+        "name": "stonebrick_wall",
+        "description": "Stonebrick Wall",
+        "recipe": [{
+            "id": 4,
+            "amount": 10
+        }, {
+            "id": 6,
+            "amount": 4
+        }, {
+            "id": 7,
+            "amount": 7
+        }]
+    }, {
+        "id": 17,
+        "name": "stonebrick_ceiling",
+        "description": "Stonebrick Ceiling",
+        "recipe": [{
+            "id": 4,
+            "amount": 6
+        }, {
+            "id": 6,
+            "amount": 3
+        }, {
+            "id": 7,
+            "amount": 5
+        }]
+    }, {
+        "id": 18,
+        "name": "stonebrick_doorframe",
+        "description": "Stonebrick DoorFrame",
+        "recipe": [{
+            "id": 4,
+            "amount": 5
+        }, {
+            "id": 2,
+            "amount": 4
+        }, {
+            "id": 7,
+            "amount": 4
+        }]
+    }, {
+        "id": 19,
+        "name": "stonebrick_wedgefoundation",
+        "description": "Stonebrick Wedge Foundation",
+        "recipe": [{
+            "id": 4,
+            "amount": 9
+        }, {
+            "id": 6,
+            "amount": 4
+        }, {
+            "id": 7,
+            "amount": 7
+        }]
+    }, {
+        "id": 20,
+        "name": "stonebrick_wedge",
+        "description": "Stonebrick Wedge",
+        "recipe": [{
+            "id": 4,
+            "amount": 5
+        }, {
+            "id": 6,
+            "amount": 2
+        }, {
+            "id": 7,
+            "amount": 4
+        }]
+    }, {
+        "id": 21,
+        "name": "stonebrick_pillar",
+        "description": "Stonebrick Pillar",
+        "recipe": [{
+            "id": 4,
+            "amount": 5
+        }, {
+            "id": 6,
+            "amount": 2
+        }, {
+            "id": 7,
+            "amount": 4
+        }]
+    }]
+};
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10207,6 +10377,7 @@ function Board(id, size) {
     this.ctx = this.canvas.getContext('2d');
     this.gridSize = size || 40;
     this.nodes = [];
+    this.activeResource = {};
 } /**
    * Imports
    */
@@ -10298,6 +10469,52 @@ Node.prototype.draw = function (ctx, fill) {
 Node.prototype.update = function () {};
 
 exports.default = Node;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Tabs(element) {
+    this.element = (0, _jquery2.default)(element);
+    this.tabs = (0, _jquery2.default)(element).find('.tab-menu a');
+    this.pages = (0, _jquery2.default)(element).find('.tab');
+    this.activeTab = this.tabs.eq(0).data('tab');
+}
+
+Tabs.prototype.init = function () {
+    var _self = this;
+    _self.tabs.on('click', function (e) {
+        e.preventDefault();
+        _self.changeTab((0, _jquery2.default)(this));
+    });
+};
+
+Tabs.prototype.changeTab = function (tab) {
+    var _self = this;
+    this.tabs.removeClass('active');
+    (0, _jquery2.default)(tab).addClass('active');
+    this.activeTab = (0, _jquery2.default)(tab).data('tab');
+    this.pages.removeClass('active');
+    var $page = this.pages.filter(function () {
+        return (0, _jquery2.default)(this).data('tab') == _self.activeTab;
+    });
+    $page.addClass('active');
+};
+
+exports.default = Tabs;
 
 /***/ })
 /******/ ]);

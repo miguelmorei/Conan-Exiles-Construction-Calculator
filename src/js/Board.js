@@ -15,6 +15,7 @@ function Board(id, size) {
     this.ctx = this.canvas.getContext('2d');
     this.gridSize = size || 40;
     this.nodes = [];
+    this.activeResource = {};
 }
 
 Board.prototype.init = function () {
@@ -36,7 +37,6 @@ Board.prototype.registerEvents = function () {
         let pos = this.getNodePosFromCoord(x, y);
         this.nodes[pos].resource = resources[0];
         this.nodes[pos].draw(this.ctx, true);
-
     }
 
 
