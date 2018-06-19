@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Mirza:400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="column">
+            <canvas id="board" width="800" height="800"></canvas>
+        </div>
+        <div class="column">
+            <div class="construction-menu">
+                <h2>Choose structure:</h2>
+                <ul class="tab-menu construction-menu-main">
+                    <li><a href="" class="active" data-tab="sandstone">Sandstone</a></li>
+                    <li><a href="" data-tab="stonebrick">Stonebrick</a></li>
+                    <li><a href="" data-tab="reinforced_stone">Reinforced stone</a></li>
+                </ul>
+                <ul class="tab-container construction-menu-tabs">
+                    <li class="construction-menu-tab tab active" data-tab="sandstone">
+                        <ul>
+                            <li>
+                                <a href="">Sandstone wall</a>
+                            </li>
+                            <li>
+                                <a href="">Sandstone foundation</a>
+                            </li>
+                            <li>
+                                <a href="">Sandstone wedge foundation</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="construction-menu-tab tab" data-tab="stonebrick">
+                        <ul>
+                            <li>
+                                <a href="">Stonebrick wall</a>
+                            </li>
+                            <li>
+                                <a href="">Stonebrick foundation</a>
+                            </li>
+                            <li>
+                                <a href="">Stonebrick wedge foundation</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="construction-menu-tab tab" data-tab="reinforced_stone">
+                        <ul>
+                            <li>
+                                <a href="">Reinforced stone wall</a>
+                            </li>
+                            <li>
+                                <a href="">Reinforced stone foundation</a>
+                            </li>
+                            <li>
+                                <a href="">Reinforced stone wedge foundation</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="summary">
+                <h2>Used resources:</h2>
+                <ul>
+                    <li>
+                        <p>Stonebrick wall - 28</p>
+                        <ul>
+                            <li>
+                                <p>Stonebrick - 168</p>
+                                <ul>
+                                    <li>Stone - 1680</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p>Shaped wood - 112</p>
+                                <ul>
+                                    <li>
+                                        <p>Wood - 1120</p>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p>Iron Reinforcement - 140</p>
+                                <ul>
+                                    <li>
+                                        <p>Iron bar - 140</p>
+                                        <ul>
+                                            <li>Iron stone - 240</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
